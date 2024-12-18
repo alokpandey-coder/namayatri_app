@@ -11,6 +11,7 @@ import com.namayatri.namayatri.Repository.PropertyRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -68,5 +69,12 @@ public class PropertyService {
       PropertyDto prop =mapToDto(savedProperty);
 
       return prop;
+    }
+
+    public List<Property> searchProperty(String searchName) {
+
+        List<Property> properties = propertyRepository.searchProperty(searchName);
+
+        return properties; 
     }
 }
