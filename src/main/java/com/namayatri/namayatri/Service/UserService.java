@@ -1,11 +1,15 @@
 package com.namayatri.namayatri.Service;
 
 import com.namayatri.namayatri.Model.User;
+import com.namayatri.namayatri.Payload.ProfileDto;
 import com.namayatri.namayatri.Payload.UserDto;
 import com.namayatri.namayatri.Repository.UserRepository;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.Optional;
 
@@ -52,5 +56,22 @@ public class UserService {
         User userinfo= userRepository.save(user);
         UserDto information =mapToDto(userinfo);
         return information;
+    }
+
+
+    public ProfileDto getUserInfo(User user) {
+
+        ProfileDto dto = new ProfileDto();
+
+        dto.setId(user.getId());
+        dto.setName(user.getName());
+        dto.setEmail(user.getEmail());
+        dto.setUsername(user.getUsername());
+        dto.setAge(user.getAge());
+        dto.setGender(user.getGender());
+        dto.setMobile(user.getMobile());
+        dto.setMobile(user.getMobile());
+
+        return dto;
     }
 }
