@@ -1,5 +1,6 @@
 package com.namayatri.namayatri.Repository;
 
+import com.namayatri.namayatri.Model.Property;
 import com.namayatri.namayatri.Model.Review;
 import com.namayatri.namayatri.Model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,4 +12,6 @@ public interface ReviewRepository extends JpaRepository<Review, Integer> {
      //Get Review From Particular User
 
     List<Review> findByUserId(User user);
+
+    Review findByPropertyAndUser(Property property, User user);
 }

@@ -32,8 +32,11 @@ public class UserController {
 
     //URL: http://localhost:8080/api/new-user/userInfo
     @GetMapping("/userInfo")
-    public ResponseEntity<ProfileDto> getUserProfile(@AuthenticationPrincipal User user){
+    public ResponseEntity<?> getUserProfile(@AuthenticationPrincipal User user){
 
+        if (user == null) {
+            return new ResponseEntity<>("Error Null ",HttpStatus.UNAUTHORIZED);
+        }
        ProfileDto info_user = userService.getUserInfo(user);
 
        return new ResponseEntity<>(info_user,HttpStatus.OK);

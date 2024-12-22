@@ -45,8 +45,14 @@ public class ReviewService {
         Review review = mapToEntity(reviewDto);
         Property property = propertyRepository.findById(propertyId).get();
 
-        review.setPropertyId(property);
-        review.setUserId(userId);
+        Review byPropertyAndUser = reviewRepository.findByPropertyAndUser(property, userId);
+
+        if (byPropertyAndUser!= null) {
+            throw new RuntimeException("You have already reviewed this property");
+        }
+
+        review.setProperty(property);
+        review.setUser(userId);
 
         reviewRepository.save(review);
 

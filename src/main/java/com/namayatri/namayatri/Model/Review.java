@@ -21,11 +21,11 @@ public class Review {
 
     @ManyToOne
     @JoinColumn(name = "property_id")
-    private Property propertyId;
+    private Property property;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User userId;
+    private User user;
 
     public Integer getId() {
         return id;
@@ -43,6 +43,14 @@ public class Review {
         this.rating = rating;
     }
 
+    public Property getProperty() {
+        return property;
+    }
+
+    public void setProperty(Property property) {
+        this.property = property;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -51,19 +59,11 @@ public class Review {
         this.description = description;
     }
 
-    public Property getPropertyId() {
-        return propertyId;
+    public User getUser() {
+        return user;
     }
 
-    public void setPropertyId(Property propertyId) {
-        this.propertyId = propertyId;
-    }
-
-    public User getUserId() {
-        return userId;
-    }
-
-    public void setUserId(User userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 }
